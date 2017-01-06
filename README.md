@@ -26,3 +26,8 @@ line:95 - KickClient(client, "Sorry, your Subscriptions is ended %s http://yours
 line:101 - KickClient(client, "Welcome!!! This is a privet server, in order to play you have to subscribe http://yoursite.com");
 
 # Compile simple_mysql_billing.sp here - https://www.sourcemod.net/compiler.php
+it might throw warnings like this:
+/groups/sourcemod/upload_tmp/textUfqL0Y.sp(79) : warning 217: loose indentation
+/groups/sourcemod/upload_tmp/textUfqL0Y.sp(80) : warning 217: loose indentation 
+
+but its ok 
