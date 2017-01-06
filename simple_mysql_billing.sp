@@ -43,11 +43,14 @@ public OnClientPostAdminCheck(client)
     new Transaction:txn = SQL_CreateTransaction();
     SQL_AddQuery(txn, query, 1); // First query, does steamid exist in database.table
 
-    Format(query, sizeof(query), "SELECT expire_date FROM billing WHERE steamid='%s' AND expire_date >= DATE(now()) ORDER BY expire_date DESC LIMIT 1", auth);
+    Format(query, sizeof(query), "SELECT expire_date FROM billing WHERE steamid='%s' AND expire_date >= DATE(now())", auth);
     SQL_AddQuery(txn, query, 2); // Second query, get fresh records by steamid
 
-    Format(query, sizeof(query), "SELECT expire_date FROM billing WHERE steamid='%s' AND expire_date < DATE(now()) ORDER BY expire_date DESC LIMIT 1", auth);
+    Format(query, sizeof(query), "SELECT expire_date FROM billing WHERE steamid='%s' AND expire_date < DATE(now())", auth);
     SQL_AddQuery(txn, query, 3); // Third query, get old records
+
+    Format(query, sizeof(query), "SELECT expire_date FROM billing WHERE steamid='%s' AND expire_date IS NOT NULL", auth);
+    SQL_AddQuery(txn, query, 4); // Third query, get old records
 
     SQL_ExecuteTransaction(db, txn, onSuccess, onError, GetClientUserId(client));
 
@@ -90,6 +93,12 @@ public onSuccess(Database database, any data, int numQueries, Handle[] results, 
         {
             SQL_FetchString(results[i], 0, buffer, sizeof(buffer));
             KickClient(client, "Sorry, your Subscriptions is ended %s http://yoursite.com", buffer);
+            break;
+        }
+
+        if(queryData[i] == 4 && !SQL_FetchRow(results[i])) // steamid found, but expire_date of subscrbtion is NULL
+        {
+            KickClient(client, "Welcome!!! This is a privet server, in order to play you have to subscribe http://yoursite.com");
             break;
         }
     }
