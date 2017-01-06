@@ -21,7 +21,8 @@ CREATE TABLE `billing` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 # change message to player on lines 77 and 92 to your prefer in simple_mysql_billing.sp
-line:77 - KickClient(client, "Welcome! This is a privet server, in order to play you have to subscribe http://yoursite.com");
-line:92 - KickClient(client, "Sorry, your Subscriptions is ended %s http://yoursite.com", buffer);
+line:80 - KickClient(client, "Welcome! This is a privet server, in order to play you have to subscribe http://yoursite.com");
+line:95 - KickClient(client, "Sorry, your Subscriptions is ended %s http://yoursite.com", buffer);
+line:101 - KickClient(client, "Welcome!!! This is a privet server, in order to play you have to subscribe http://yoursite.com");
 
 # Compile simple_mysql_billing.sp here - https://www.sourcemod.net/compiler.php
