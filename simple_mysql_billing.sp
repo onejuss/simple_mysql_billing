@@ -74,7 +74,7 @@ public onSuccess(Database database, any data, int numQueries, Handle[] results, 
             new userid = GetClientUserId(client);
             Format(query, sizeof(query), "INSERT INTO billing (steamid, joind_dt) VALUES ('%s',CURRENT_TIMESTAMP)", steamid);
           	SQL_TQuery(db, OnRowInserted, query, userid);
-            KickClient(client, "Welcome! This is a privet server, in order to play you have to subscribe http://rullers.ru");
+            KickClient(client, "Welcome! This is a privet server, in order to play you have to subscribe http://yoursite.com");
             break;
         }
 
@@ -89,7 +89,7 @@ public onSuccess(Database database, any data, int numQueries, Handle[] results, 
         if(queryData[i] == 3 && SQL_FetchRow(results[i])) // Old records found
         {
             SQL_FetchString(results[i], 0, buffer, sizeof(buffer));
-            KickClient(client, "Sorry, your Subscriptions is ended %s http://rullers.ru", buffer);
+            KickClient(client, "Sorry, your Subscriptions is ended %s http://yoursite.com", buffer);
             break;
         }
     }
