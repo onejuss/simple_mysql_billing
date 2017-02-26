@@ -71,13 +71,15 @@ public onSuccess(Database database, any data, int numQueries, Handle[] results, 
     {
         if(queryData[i] == 1 && !SQL_FetchRow(results[i])) // steamid not found
         {
-            // inserting steam_id to database
+            // inserting steam_id to database (and give any new player free 30 day subscription)
             decl String:query[255], String:steamid[32];
             GetClientAuthId(client, AuthId_Steam2,  steamid, sizeof(steamid) );
             new userid = GetClientUserId(client);
-            Format(query, sizeof(query), "INSERT INTO billing (steamid, joind_dt) VALUES ('%s',CURRENT_TIMESTAMP)", steamid);
+            Format(query, sizeof(query), "INSERT INTO billing (steamid, expire_date, joind_dt) VALUES ('%s',NOW() + INTERVAL 30 DAY,CURRENT_TIMESTAMP)", steamid);
           	SQL_TQuery(db, OnRowInserted, query, userid);
-            KickClient(client, "Welcome! This is a privet server, in order to play you have to subscribe http://yoursite.com");
+            /*KickClient(client, "Welcome! This is a privet server, in order to play you have to subscribe http://yoursite.com");*/
+            PrintToChat(client, "Welcome! This is a privet server, in order to play you have to subscribe at http://yoursite.com");
+            PrintToChat(client, "We give you 30 day free subscription, your free subscription will end at %s", buffer);
             break;
         }
 
