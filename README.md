@@ -13,12 +13,18 @@ This is a simple mysql billing for sourcemod, i made it for my Private CSGO Serv
 
 # create table 
 CREATE TABLE `billing` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `steamid` varchar(32) NOT NULL DEFAULT '',
-  `expire_date` date DEFAULT NULL,
-  `joind_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`steamid` VARCHAR(32) NOT NULL DEFAULT '',
+	`expire_date` DATE NULL DEFAULT NULL,
+	`joind_dt` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`cash` INT(10) NULL DEFAULT '0',
+	PRIMARY KEY (`id`),
+	UNIQUE INDEX `steamid` (`steamid`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=82
+;
 
 # change message to player on lines 80, 95 and 101 to your prefer in simple_mysql_billing.sp
 line:80 - KickClient(client, "Welcome! This is a privet server, in order to play you have to subscribe http://yoursite.com");
