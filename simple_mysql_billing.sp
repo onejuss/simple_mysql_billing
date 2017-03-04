@@ -79,15 +79,17 @@ public onSuccess(Database database, any data, int numQueries, Handle[] results, 
           	SQL_TQuery(db, OnRowInserted, query, userid);
             /*KickClient(client, "Welcome! This is a privet server, in order to play you have to subscribe http://yoursite.com");*/
             PrintToChat(client, "Welcome! This is a privet server, in order to play you have to subscribe at http://yoursite.com");
-            PrintToChat(client, "We give you 30 day free subscription, your free subscription will end at %s", buffer);
+            PrintToChat(client, "We give you 30 day free subscription");
             break;
         }
 
         if(queryData[i] == 2 && SQL_FetchRow(results[i])) // Fresh records found
         {
+            SQL_FetchString(results[i], 0, buffer, sizeof(buffer));
             // break loop to not continue next query results.
             //SQL_FetchString(results[i], 0, buffer, sizeof(buffer));
             //PrintToServer("- %s", buffer);
+            PrintToChat(client, "\x02 \x02 Welcome back! Your subscribtion will end \x03 %s, \x02 subscribe here https://rullers.ru/sub", buffer);
             break;
         }
 
