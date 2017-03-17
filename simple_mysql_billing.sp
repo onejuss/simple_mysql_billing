@@ -30,7 +30,7 @@ public OnClientPostAdminCheck(client)
     if(IsFakeClient(client)) return;
 
 
-    if(CheckCommandAccess(client, "sm_rcon", ADMFLAG_RCON)) return;
+    if(CheckCommandAccess(client, "sm_admin", ADMFLAG_RCON)) return;
 
 
     new String:query[512];
