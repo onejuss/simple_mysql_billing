@@ -36,4 +36,4 @@ it might throw warnings like this:
 /groups/sourcemod/upload_tmp/textUfqL0Y.sp(79) : warning 217: loose indentation
 /groups/sourcemod/upload_tmp/textUfqL0Y.sp(80) : warning 217: loose indentation 
 
-but its ok 
+but its ok.
